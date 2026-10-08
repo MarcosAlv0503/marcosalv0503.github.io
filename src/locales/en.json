@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Marcos Álvarez · Full-Stack & AI Agent Developer",
+    "description": "Portfolio of Marcos Álvarez, Full-Stack and AI agent developer."
+  },
+  "skipLink": "Skip to content",
+  "nav": {
+    "label": "Main navigation",
+    "home": "Marcos Álvarez, home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "about": "About",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "links": "Links",
+    "contact": "Contact"
+  },
+  "theme": {
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
+  "cv": {
+    "download": "Download CV",
+    "short": "CV",
+    "fileName": "Marcos-Alvarez-CV-EN.pdf"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "seeExperience": "View experience"
+  },
+  "about": {
+    "title": "About me",
+    "paragraphs": [
+      "I'm a Full-Stack developer passionate about building software that solves real problems. Over the past few years I've built Java and Spring Boot microservices for the banking sector, developed web applications with Python and Angular, and specialized in AI agents and process automation.",
+      "I'm proactive and hard-working: I like to anticipate what a project needs and see every task through to the end. I'm curious by nature, which drives me to explore new technologies and keep learning."
+    ],
+    "facts": {
+      "location": "Location",
+      "focus": "Focus",
+      "focusValue": "AI agents, automation and full-stack development",
+      "education": "Education",
+      "educationValue": "DAM and DAW"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "client": "Client: {{client}}",
+    "present": "present",
+    "techLabel": "Technologies",
+    "items": {
+      "loang": {
+        "description": "Development of AI agents and full-stack solutions, focusing on process automation and project delivery. Designed automated workflows and integrated external services to streamline business processes."
+      },
+      "betterConsultants": {
+        "description": "Development of backend microservices and integration of REST APIs. Managed relational databases and collaborated on version-controlled software projects."
+      },
+      "adara": {
+        "description": "Development of interactive e-learning content and digital learning experiences. Applied prompt engineering techniques to enhance and automate content creation."
+      },
+      "worldSoftware": {
+        "description": "Development of web applications and backend solutions, with a focus on automation and cloud-based services. Implemented communication workflows and integrated frontend and backend components."
+      }
+    }
+  },
+  "education": {
+    "title": "Education",
+    "items": {
+      "daw": {
+        "title": "Web Development"
+      },
+      "dam": {
+        "title": "Multiplatform Development"
+      },
+      "bachillerato": {
+        "title": "Spanish Baccalaureate (Science track)"
+      }
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "groups": {
+      "languages": "Languages",
+      "development": "Development",
+      "ai": "AI & automation",
+      "tools": "Tools & management"
+    }
+  },
+  "tech": {
+    "aiAgents": "AI Agents",
+    "aiContentCreation": "AI-assisted Content Creation",
+    "fullStack": "Full-Stack Development",
+    "genAiAgents": "Generative AI & AI Agents",
+    "promptEngineering": "Prompt Engineering",
+    "workflowAutomation": "Workflow Automation",
+    "projectManagement": "Project Management"
+  },
+  "links": {
+    "title": "Links",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "opensInNewTab": "(opens in a new tab)"
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "If you'd like to talk about an opportunity or a project, drop me a line.",
+    "email": "Email",
+    "phone": "Phone",
+    "copyEmail": "Copy email",
+    "copied": "Email copied",
+    "copyFailed": "Couldn't copy the email. Select it and copy it manually."
+  },
+  "footer": {
+    "rights": "© {{year}} Marcos Álvarez",
+    "backToTop": "Back to top"
+  },
+  "language": {
+    "label": "Language",
+    "es": "Español",
+    "en": "English"
+  }
+}

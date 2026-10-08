@@ -117,10 +117,13 @@ scroll); el resto es sobrio y disciplinado.
 
 ## Glosario de traducción (ES → EN)
 
-| ES                                                    | EN                                                                      | Estado                 |
-| ----------------------------------------------------- | ----------------------------------------------------------------------- | ---------------------- |
-| DAW (CFGS Desarrollo de Aplicaciones Web)             | Higher Vocational Degree in Web Application Development (DAW)           | pendiente de confirmar |
-| DAM (CFGS Desarrollo de Aplicaciones Multiplataforma) | Higher Vocational Degree in Multiplatform Application Development (DAM) | pendiente de confirmar |
-| Bachillerato de Ciencias                              | Spanish Baccalaureate (Science track)                                   | pendiente de confirmar |
-| Creación de contenidos asistida por IA                | AI-assisted content creation                                            | pendiente de confirmar |
-| Cliente: Bankinter                                    | Client: Bankinter                                                       | pendiente de confirmar |
+Fuente preferente para el inglés: el CV en inglés de Marcos (`public/cv/cv-en.pdf`).
+
+| ES                                               | EN                                    | Estado                               |
+| ------------------------------------------------ | ------------------------------------- | ------------------------------------ |
+| Desarrollo de Aplicaciones Web (DAW)             | Web Development (DAW)                 | confirmado (CV EN)                   |
+| Desarrollo de Aplicaciones Multiplataforma (DAM) | Multiplatform Development (DAM)       | confirmado (CV EN)                   |
+| Bachillerato de Ciencias                         | Spanish Baccalaureate (Science track) | propuesto; Marcos corregirá el CV EN |
+| Creación de contenidos asistida por IA           | AI-assisted Content Creation          | confirmado (CV EN)                   |
+| Cliente: Bankinter                               | Client: Bankinter                     | confirmado (CV EN)                   |
+| …y la entrega de proyectos (Loang)               | …and project delivery                 | confirmado: en ambos idiomas         |

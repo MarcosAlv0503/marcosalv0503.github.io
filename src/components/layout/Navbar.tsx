@@ -5,6 +5,7 @@ import { CloseIcon, MenuIcon } from '@/components/ui/icons';
 import { profile } from '@/data/profile';
 import { sectionIds } from '@/data/sections';
 import { useActiveSection } from '@/hooks/useActiveSection';
+import LanguageToggle from './LanguageToggle';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
@@ -57,6 +58,7 @@ export default function Navbar() {
         <ul className="hidden items-center lg:flex">{links}</ul>
 
         <div className="flex items-center gap-1 sm:gap-2">
+          <LanguageToggle />
           <ThemeToggle />
           <DownloadCvButton compact />
           <button

@@ -21,7 +21,7 @@ export default function DownloadCvButton({
       aria-label={compact ? t('cv.download') : undefined}
       size={compact ? 'sm' : 'md'}
     >
-      <DownloadIcon className="size-4" />
+      <DownloadIcon className={compact ? 'size-4 max-[359px]:hidden' : 'size-4'} />
       {compact ? t('cv.short') : t('cv.download')}
     </ButtonLink>
   );
