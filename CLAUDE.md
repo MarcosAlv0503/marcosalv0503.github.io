@@ -27,8 +27,8 @@ Antes de cada commit: `npm run lint && npm run format:check && npm run build` de
   proyectos, fechas, empresas, tecnologías ni enlaces. Lo que falte → placeholder con `TODO:` y preguntar.
 - **Privacidad:** se muestran email, teléfono y municipio. **Nunca** la calle/dirección postal.
 - Rol en el hero: `Full-Stack & AI Agent Developer` (igual en ES y EN).
-- Proyectos: se añadirán más adelante (con GIFs/capturas). Hasta entonces la sección no debe mostrar datos
-  inventados.
+- Proyectos: se añadirán más adelante (con GIFs/capturas). Mientras `src/data/projects.ts` esté vacío, la
+  sección y su entrada de menú no se renderizan, y el CTA principal del hero apunta a Experiencia.
 
 ## Arquitectura
 
@@ -67,10 +67,20 @@ src/
 
 ## Diseño — concepto "Pipeline"
 
-La web se lee como un flujo automatizado (agentes de IA / automatización):
-títulos de sección en mono estilo nodo (`01 → sobre_mí`), timeline como línea de pipeline cuyos nodos se
-activan al hacer scroll, chips de tecnología estilo terminal, y en el hero un grafo 3D de nodos con pulsos
-viajando por las aristas (reacciona a ratón y scroll).
+La web se lee como un flujo automatizado (agentes de IA / automatización). Lo memorable es el hero (nombre
+enorme + grafo de nodos, en 3D a partir de la Fase 4, con pulsos por las aristas que reaccionan a ratón y
+scroll); el resto es sobrio y disciplinado.
+
+- **Rail del pipeline** (escritorio, `lg+`): una línea vertical (`App.tsx`, `left-12`) recorre las secciones.
+  Cada título de sección es un nodo con borde accent (`SectionHeading`, `-left-[54px]`) y cada entrada del
+  timeline un nodo pequeño (`TimelineItem`, `-left-[52px]`). En móvil el timeline usa su propia línea.
+  Si cambia el padding del contenedor (`lg:pl-24`), recalcular esos offsets.
+- **Sin numeración** en los títulos de sección (no son una secuencia) ni eyebrows en mayúsculas.
+- Fondo del hero: rejilla de puntos (`bg-canvas-grid`), guiño a los lienzos de Make/n8n.
+- Evitar tarjetas idénticas: los grupos se separan con filetes (`border-t`), no con cards.
+- Nada de `→` añadido al texto de botones/enlaces; los iconos van como SVG en `components/ui/icons.tsx`.
+- Motion (Fase 4): un único momento orquestado (entrada del hero) + respuestas a acciones del usuario y el
+  timeline activándose con el scroll. Nada de fade-up genérico en cada sección.
 
 - **Tema:** oscuro por defecto, claro opcional (toggle). Se controla con `data-theme` en `<html>`; guardado
   en `localStorage` (`theme`). Usar siempre los tokens semánticos de Tailwind, nunca colores literales:
@@ -79,7 +89,7 @@ viajando por las aristas (reacciona a ratón y scroll).
 - **Paleta oscura:** bg `#0A0B0F`, surface `#13151B`, fg `#ECEAE4`, muted `#8C919B`, accent lima `#C8F542`,
   secondary azul `#5B8CFF`. **Clara:** bg `#F4F2ED`, fg `#14151A`, accent `#4A6A00`, secondary `#2D5BD8`.
 - **Tipografías** (self-hosted vía `@fontsource-variable`): `font-display` Bricolage Grotesque (titulares),
-  `font-sans` Geist (texto), `font-mono` JetBrains Mono (etiquetas, fechas, títulos de sección).
+  `font-sans` Geist (texto), `font-mono` JetBrains Mono (fechas, chips de tecnología, rol del hero).
 - Móvil primero. Gutter lateral mínimo 16px (`px-4`).
 
 ## Rendimiento y accesibilidad (requisitos)

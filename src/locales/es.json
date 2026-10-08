@@ -1,0 +1,113 @@
+{
+  "skipLink": "Saltar al contenido",
+  "nav": {
+    "label": "Navegación principal",
+    "home": "Marcos Álvarez, inicio",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "education": "Formación",
+    "skills": "Habilidades",
+    "links": "Enlaces",
+    "contact": "Contacto"
+  },
+  "theme": {
+    "toLight": "Cambiar a modo claro",
+    "toDark": "Cambiar a modo oscuro"
+  },
+  "cv": {
+    "download": "Descargar CV",
+    "short": "CV",
+    "fileName": "Marcos-Alvarez-CV-ES.pdf"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "seeExperience": "Ver experiencia"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "paragraphs": [
+      "Soy desarrollador Full-Stack, apasionado por crear software que resuelve problemas reales. En los últimos años he desarrollado microservicios en Java y Spring Boot para el sector bancario, aplicaciones web con Python y Angular, y me he especializado en agentes de IA y automatización de procesos.",
+      "Me considero proactivo y trabajador: me gusta adelantarme a lo que necesita un proyecto y llevar cada tarea hasta el final. Soy curioso por naturaleza, y eso me lleva a explorar nuevas tecnologías y seguir aprendiendo."
+    ],
+    "facts": {
+      "location": "Ubicación",
+      "focus": "Enfoque",
+      "focusValue": "Agentes de IA, automatización y desarrollo full-stack",
+      "education": "Formación",
+      "educationValue": "DAM y DAW"
+    }
+  },
+  "experience": {
+    "title": "Experiencia",
+    "client": "Cliente: {{client}}",
+    "present": "actualidad",
+    "techLabel": "Tecnologías",
+    "items": {
+      "loang": {
+        "description": "Desarrollo de agentes de IA y soluciones full-stack, con especial foco en la automatización de procesos. Diseño de flujos de trabajo automatizados e integración de servicios externos para optimizar y agilizar procesos de negocio."
+      },
+      "betterConsultants": {
+        "description": "Desarrollo de microservicios backend e integración de APIs REST. Gestión de bases de datos relacionales. Colaboración en proyectos de desarrollo de software mediante sistemas de control de versiones."
+      },
+      "adara": {
+        "description": "Desarrollo de contenidos interactivos de e-learning y experiencias digitales de aprendizaje. Aplicación de técnicas de prompt engineering para mejorar y automatizar la creación de contenidos."
+      },
+      "worldSoftware": {
+        "description": "Desarrollo de aplicaciones web y soluciones backend, con especial atención a la automatización y los servicios cloud. Implementación de flujos de comunicación e integración de componentes frontend y backend."
+      }
+    }
+  },
+  "education": {
+    "title": "Formación",
+    "items": {
+      "daw": {
+        "title": "Desarrollo de Aplicaciones Web"
+      },
+      "dam": {
+        "title": "Desarrollo de Aplicaciones Multiplataforma"
+      },
+      "bachillerato": {
+        "title": "Bachillerato de Ciencias"
+      }
+    }
+  },
+  "skills": {
+    "title": "Habilidades",
+    "groups": {
+      "languages": "Lenguajes",
+      "development": "Desarrollo",
+      "ai": "IA y automatización",
+      "tools": "Herramientas y gestión"
+    }
+  },
+  "tech": {
+    "aiAgents": "Agentes de IA",
+    "aiContentCreation": "Creación de contenidos asistida por IA",
+    "fullStack": "Desarrollo full-stack",
+    "genAiAgents": "IA generativa y agentes de IA",
+    "promptEngineering": "Prompt engineering",
+    "workflowAutomation": "Automatización de flujos de trabajo",
+    "projectManagement": "Gestión de proyectos"
+  },
+  "links": {
+    "title": "Enlaces",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "opensInNewTab": "(se abre en una pestaña nueva)"
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "Si quieres hablar de una oportunidad o un proyecto, escríbeme.",
+    "email": "Email",
+    "phone": "Teléfono",
+    "copyEmail": "Copiar email",
+    "copied": "Email copiado",
+    "copyFailed": "No se pudo copiar. Selecciona el email y cópialo a mano."
+  },
+  "footer": {
+    "rights": "© {{year}} Marcos Álvarez",
+    "backToTop": "Volver arriba"
+  }
+}
