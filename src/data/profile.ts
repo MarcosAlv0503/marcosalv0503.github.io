@@ -10,7 +10,18 @@ export const profile: Profile = {
   location: 'Rivas-Vaciamadrid',
   cv: {
     es: '/cv/cv-es.pdf',
-    // TODO: añadir public/cv/cv-en.pdf cuando Marcos lo envíe.
     en: '/cv/cv-en.pdf',
   },
+  links: [
+    {
+      id: 'linkedin',
+      url: 'https://www.linkedin.com/in/marcos-%C3%A1lvarez-mart%C3%ADn-48393a2a1/',
+      handle: 'marcos-álvarez-martín',
+    },
+    {
+      id: 'github',
+      url: 'https://github.com/MarcosAlv0503',
+      handle: 'MarcosAlv0503',
+    },
+  ],
 };
