@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marcos Álvarez · Full-Stack & AI Agent Developer</title>
+    <meta
+      name="description"
+      content="Portfolio de Marcos Álvarez, desarrollador Full-Stack y de agentes de IA."
+    />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0A0B0F" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // Aplica el tema guardado antes del primer pintado para evitar parpadeos.
+      (function () {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (theme === 'light' || theme === 'dark') {
+            document.documentElement.dataset.theme = theme;
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
