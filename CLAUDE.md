@@ -6,7 +6,7 @@ Idioma de trabajo con el usuario: **español**.
 ## Stack
 
 React 19 + Vite + TypeScript (strict) · Tailwind CSS v4 (config CSS-first en `src/styles/index.css`) ·
-Framer Motion · React Three Fiber + drei · react-i18next · ESLint (flat config) + Prettier.
+Motion (antes Framer Motion: paquete `motion`, importar desde `motion/react`) · React Three Fiber + drei · react-i18next · ESLint (flat config) + Prettier.
 Sin backend, sin router: single page con anclas y scroll suave.
 
 ## Comandos
@@ -39,10 +39,10 @@ src/
     sections/  Hero, About, Projects, Experience, Education, Skills, Links, Contact
     projects/  ProjectCard, ProjectFilter, ProjectModal
     timeline/  Timeline, TimelineItem
-    three/     Scene3D (lazy), Scene3DFallback
+    three/     HeroGraph, Scene3D (lazy), NodeGraph, Scene3DFallback
     ui/        Botones, Tag, SectionHeading, CopyButton, DownloadCvButton…
   data/        Datos tipados e independientes del idioma (ids, fechas ISO, tecnologías, URLs)
-  hooks/       useReducedMotion, useWebGLSupport, useTheme…
+  hooks/       useCan3D, useIdle, usePassed, useTheme, useActiveSection…
   i18n/        Configuración de react-i18next
   locales/     es.json, en.json — TODO el texto visible
   lib/         Utilidades puras (formatDate…)
@@ -79,8 +79,9 @@ scroll); el resto es sobrio y disciplinado.
 - Fondo del hero: rejilla de puntos (`bg-canvas-grid`), guiño a los lienzos de Make/n8n.
 - Evitar tarjetas idénticas: los grupos se separan con filetes (`border-t`), no con cards.
 - Nada de `→` añadido al texto de botones/enlaces; los iconos van como SVG en `components/ui/icons.tsx`.
-- Motion (Fase 4): un único momento orquestado (entrada del hero) + respuestas a acciones del usuario y el
-  timeline activándose con el scroll. Nada de fade-up genérico en cada sección.
+- Motion: un único momento orquestado (entrada del hero: nombre por líneas + grafo que se dibuja) +
+  respuestas a acciones (menú móvil, selector de idioma, tema) y el pipeline activándose con el scroll
+  (`PipelineRail` + `usePassed`, línea de lectura al 55 % de la ventana). Nada de fade-up genérico por sección.
 
 - **Tema:** oscuro por defecto, claro opcional (toggle). Se controla con `data-theme` en `<html>`; guardado
   en `localStorage` (`theme`). Usar siempre los tokens semánticos de Tailwind, nunca colores literales:
@@ -94,10 +95,17 @@ scroll); el resto es sobrio y disciplinado.
 
 ## Rendimiento y accesibilidad (requisitos)
 
-- Escena 3D con `React.lazy` + `Suspense`, cargada en idle, con fallback SVG ligero.
-- Sin 3D si: no hay WebGL, `prefers-reduced-motion`, o dispositivo modesto (`hardwareConcurrency`/
-  `deviceMemory` ≤ 4). Pausar el render cuando el hero no es visible; `dpr` máx. 1.5.
-- Framer Motion bajo `<MotionConfig reducedMotion="user">`.
+- Escena 3D (`components/three/`): `HeroGraph` pinta siempre el SVG (`Scene3DFallback`) y, si procede, carga
+  `Scene3D` con `React.lazy` + `Suspense` cuando el navegador está libre (`useIdle`). El fundido SVG → 3D
+  empieza tras el primer fotograma renderizado (`onFirstFrame`), nunca en `onCreated`.
+- 3D solo si (`useCan3D`): viewport ≥ 1024px, puntero fino (ratón), sin `prefers-reduced-motion`, con WebGL
+  y dispositivo no modesto (`hardwareConcurrency`/`deviceMemory` > 4). En móvil no se descarga three.js.
+- Render pausado (`frameloop="never"`) cuando el hero no es visible; `dpr` máx. 1.5 y baja a 1 si
+  `PerformanceMonitor` detecta caída de FPS. En `useFrame` usar `state.camera`/`state.gl` (la regla
+  `react-hooks/immutability` no permite mutar lo que devuelve `useThree`).
+- El aviso "THREE.Clock has been deprecated" en consola viene de React Three Fiber, no del proyecto.
+- Motion bajo `<MotionConfig reducedMotion="user">` (en `App.tsx`); las entradas usan además
+  `useReducedMotion()` para no partir de `initial` oculto.
 - Objetivo Lighthouse ≥ 90 en las cuatro categorías.
 - HTML semántico, skip link, foco visible, navegación por teclado, modales con focus trap + Esc,
   `alt` en imágenes, contraste AA en ambos temas.

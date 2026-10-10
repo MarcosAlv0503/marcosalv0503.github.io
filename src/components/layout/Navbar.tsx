@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import DownloadCvButton from '@/components/ui/DownloadCvButton';
@@ -75,13 +76,21 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <div
-        id="mobile-menu"
-        hidden={!open}
-        className="border-t border-border/60 bg-bg px-4 pt-2 pb-6 sm:px-8 lg:hidden"
-      >
-        <ul>{links}</ul>
-      </div>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            key="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-border/60 bg-bg lg:hidden"
+          >
+            <ul className="px-4 pt-2 pb-6 sm:px-8">{links}</ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
