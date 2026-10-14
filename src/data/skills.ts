@@ -4,7 +4,7 @@ import type { SkillGroup } from './types';
 export const skillGroups: SkillGroup[] = [
   {
     id: 'languages',
-    skills: ['Java', 'Python', 'JavaScript'],
+    skills: ['Java', 'Python', 'JavaScript', 'PHP', 'C#'],
   },
   {
     id: 'development',

@@ -10,6 +10,17 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <style>
+      /* Fondo del tema desde el primer fotograma, antes de que llegue el CSS de la web. */
+      html {
+        background: #0a0b0f;
+        color-scheme: dark;
+      }
+      html[data-theme='light'] {
+        background: #f4f2ed;
+        color-scheme: light;
+      }
+    </style>
     <script>
       // Antes del primer pintado: aplica el tema guardado y decide el idioma (elección guardada →
       // idioma del navegador → español). src/i18n lo lee de <html lang>. El HTML prerenderizado
@@ -41,6 +52,9 @@
           }
         }
         root.lang = lang;
+        // La entrada del hero espera a las fuentes (ver el script al final de <body>) para que el
+        // nombre no cambie de tipografía a mitad de la animación.
+        if (document.fonts && document.fonts.load) root.classList.add('fonts-pending');
         if (lang !== 'es') {
           root.classList.add('lang-pending');
           // Si el JS no llega a pintar el otro idioma (error, bloqueo…), se muestra el español.
@@ -53,6 +67,27 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Carga las fuentes del hero y libera su animación de entrada (fonts-pending). Va al final de
+      // <body> para que el CSS, con los @font-face, ya esté disponible. Máximo 1,5 s de espera.
+      (function () {
+        var root = document.documentElement;
+        if (!root.classList.contains('fonts-pending')) return;
+        var release = function () {
+          root.classList.remove('fonts-pending');
+        };
+        Promise.all(
+          [
+            '800 1em "Bricolage Grotesque Variable"',
+            '400 1em "Geist Variable"',
+            '400 1em "JetBrains Mono Variable"',
+          ].map(function (font) {
+            return document.fonts.load(font);
+          }),
+        ).then(release, release);
+        setTimeout(release, 1500);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

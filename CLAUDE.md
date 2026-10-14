@@ -27,6 +27,7 @@ Antes de cada commit: `npm run lint && npm run format:check && npm run build` de
   proyectos, fechas, empresas, tecnologías ni enlaces. Lo que falte → placeholder con `TODO:` y preguntar.
 - **Privacidad:** se muestran email, teléfono y municipio. **Nunca** la calle/dirección postal.
 - Rol en el hero: `Full-Stack & AI Agent Developer` (igual en ES y EN).
+- Añadidos por indicación de Marcos aunque no estén en el CV: PHP y C# en Lenguajes.
 - Proyectos: se añadirán más adelante (con GIFs/capturas). Mientras `src/data/projects.ts` esté vacío, la
   sección y su entrada de menú no se renderizan, y el CTA principal del hero apunta a Experiencia.
 
@@ -88,6 +89,12 @@ scroll); el resto es sobrio y disciplinado.
   (`PipelineRail` + `usePassed`, línea de lectura al 55 % de la ventana). Nada de fade-up genérico por sección.
 - La entrada del hero es **CSS** (`animate-hero-*` con `--delay`), no Motion, para que funcione en el HTML
   prerenderizado antes de que cargue React. El dibujado del grafo SVG solo en `lg+`; en móvil, fundido.
+- La entrada espera a las fuentes: `index.html` pone `fonts-pending` (pausa las `animate-hero-*`) y un script
+  al final de `<body>` lo quita cuando cargan Bricolage, Geist y JetBrains Mono (máx. 1,5 s). Sin esto el
+  nombre cambiaba de tipografía a mitad de la animación. Si se añade otra animación de entrada, incluirla
+  en esa regla de `index.css`.
+- `index.html` fija el color de fondo de cada tema en un `<style>` inline para que el primer fotograma ya
+  tenga el fondo correcto (si cambia la paleta, actualizarlo también ahí y en `THEME_COLORS`).
 
 - **Tema:** oscuro por defecto, claro opcional (toggle). Se controla con `data-theme` en `<html>`; guardado
   en `localStorage` (`theme`). La UI que cambia con el tema (p. ej. el icono y el texto de `ThemeToggle`) se
@@ -104,9 +111,9 @@ scroll); el resto es sobrio y disciplinado.
 ## Rendimiento y accesibilidad (requisitos)
 
 - Escena 3D (`components/three/`): `HeroGraph` pinta siempre el SVG (`Scene3DFallback`) y, si procede, carga
-  `Scene3D` con `React.lazy` + `Suspense` cuando la página ha cargado (`useIdle`) **y** el usuario interactúa
-  (`useFirstInteraction(can3D)`, sin el evento `scroll`: la restauración de scroll o un ancla no cuentan): la
-  escena es interactiva y hasta entonces el SVG es equivalente. El fundido SVG → 3D
+  `Scene3D` con `React.lazy` + `Suspense` en cuanto la página ha cargado y el navegador está libre
+  (`useIdle`). **No** esperar a la interacción del usuario: el cambio SVG → 3D quedaba en un momento
+  arbitrario y se veía raro; así ocurre siempre durante la entrada del hero. El fundido SVG → 3D
   empieza tras el primer fotograma renderizado (`onFirstFrame`), nunca en `onCreated`.
 - 3D solo si (`useCan3D`): viewport ≥ 1024px, puntero fino (ratón), sin `prefers-reduced-motion`, con WebGL
   y dispositivo no modesto (`hardwareConcurrency`/`deviceMemory` > 4). En móvil no se descarga three.js.

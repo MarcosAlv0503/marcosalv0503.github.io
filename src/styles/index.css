@@ -177,6 +177,22 @@
   }
 }
 
+/* Mientras cargan las fuentes (máx. 1,5 s, ver index.html) la entrada del hero espera en su primer
+   fotograma, para que el nombre no cambie de tipografía a mitad de la animación. Con movimiento
+   reducido no se espera: el contenido aparece sin animación. */
+@media (prefers-reduced-motion: no-preference) {
+  .fonts-pending
+    :is(
+      .animate-hero-rise,
+      .animate-hero-fade-up,
+      .animate-hero-draw,
+      .animate-hero-pop,
+      .animate-hero-fade
+    ) {
+    animation-play-state: paused;
+  }
+}
+
 /* Mientras React pinta otro idioma distinto del prerenderizado (español), se oculta el contenido. */
 .lang-pending #root {
   visibility: hidden;
