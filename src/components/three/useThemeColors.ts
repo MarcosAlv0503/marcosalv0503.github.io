@@ -1,5 +1,6 @@
 import { useMemo, useSyncExternalStore } from 'react';
 import { Color } from 'three';
+import { subscribeTheme } from '@/hooks/useTheme';
 
 const VARS = ['--accent', '--secondary', '--fg', '--bg'] as const;
 
@@ -8,15 +9,9 @@ function read() {
   return VARS.map((v) => styles.getPropertyValue(v).trim()).join('|');
 }
 
-function subscribe(onChange: () => void) {
-  const observer = new MutationObserver(onChange);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-  return () => observer.disconnect();
-}
-
 /** Colores del tema activo (tokens CSS) como `THREE.Color`, actualizados al cambiar de tema. */
 export function useThemeColors() {
-  const key = useSyncExternalStore(subscribe, read);
+  const key = useSyncExternalStore(subscribeTheme, read);
   return useMemo(() => {
     const [accent, secondary, fg, bg] = key.split('|');
     return {

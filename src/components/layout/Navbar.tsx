@@ -1,4 +1,3 @@
-import { AnimatePresence, m } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import DownloadCvButton from '@/components/ui/DownloadCvButton';
@@ -76,21 +75,19 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <AnimatePresence initial={false}>
-        {open && (
-          <m.div
-            id="mobile-menu"
-            key="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-border/60 bg-bg lg:hidden"
-          >
-            <ul className="px-4 pt-2 pb-6 sm:px-8">{links}</ul>
-          </m.div>
-        )}
-      </AnimatePresence>
+      {/* Despliegue en CSS (grid-rows 0fr → 1fr): funciona desde el primer render, sin esperar a JS
+          diferido. `inert` lo saca del foco y de la accesibilidad mientras está cerrado. */}
+      <div
+        id="mobile-menu"
+        inert={!open}
+        className={`grid bg-bg transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${
+          open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <ul className="border-t border-border/60 px-4 pt-2 pb-6 sm:px-8">{links}</ul>
+        </div>
+      </div>
     </header>
   );
 }

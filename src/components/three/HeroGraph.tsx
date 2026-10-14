@@ -14,7 +14,7 @@ const Scene3D = lazy(() => import('./Scene3D'));
 export default function HeroGraph() {
   const can3D = useCan3D();
   const idle = useIdle();
-  const interacted = useFirstInteraction();
+  const interacted = useFirstInteraction(can3D);
   const [ready, setReady] = useState(false);
   const show3D = can3D && idle && interacted;
 

@@ -8,7 +8,7 @@ import { profile } from './data/profile';
 import { site } from './data/site';
 import { skillGroups } from './data/skills';
 import i18n from './i18n';
-import en from './locales/en.json';
+import { techLabel } from './lib/tech';
 import es from './locales/es.json';
 
 const PRERENDER_LOCALE = 'es';
@@ -37,14 +37,9 @@ export function head(): string {
   const fullName = `${profile.firstName} ${profile.lastName}`;
   const image = new URL(site.ogImage, site.url).href;
 
+  const tEs = i18n.getFixedT(PRERENDER_LOCALE);
   const knowsAbout = [
-    ...new Set(
-      skillGroups.flatMap((group) =>
-        group.skills.map((skill) =>
-          typeof skill === 'string' ? skill : en.tech[skill.i18nKey as keyof typeof en.tech],
-        ),
-      ),
-    ),
+    ...new Set(skillGroups.flatMap((group) => group.skills.map((skill) => techLabel(skill, tEs)))),
   ];
 
   const person = {

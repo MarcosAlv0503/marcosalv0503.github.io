@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { heroDelay as delay } from '@/lib/heroDelay';
 
 // Grafo estático (SVG) que representa un flujo de agentes: un nodo central conectado a servicios.
 // Se usa mientras carga la escena 3D y cuando el 3D está desactivado (móvil, sin WebGL, reduced motion…).
@@ -42,7 +42,6 @@ const edges: [number, number][] = [
 /** Las aristas que salen del núcleo se dibujan primero; el resto, a continuación. */
 const edgeDelay = (a: number) => (a === 0 ? 0.35 : 0.75);
 const nodeDelay = (i: number) => (i === 0 ? 0.25 : 0.7 + i * 0.04);
-const delay = (s: number) => ({ '--delay': `${s}s` }) as CSSProperties;
 
 export default function Scene3DFallback() {
   return (

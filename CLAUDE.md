@@ -90,7 +90,9 @@ scroll); el resto es sobrio y disciplinado.
   prerenderizado antes de que cargue React. El dibujado del grafo SVG solo en `lg+`; en móvil, fundido.
 
 - **Tema:** oscuro por defecto, claro opcional (toggle). Se controla con `data-theme` en `<html>`; guardado
-  en `localStorage` (`theme`). Usar siempre los tokens semánticos de Tailwind, nunca colores literales:
+  en `localStorage` (`theme`). La UI que cambia con el tema (p. ej. el icono y el texto de `ThemeToggle`) se
+  resuelve en CSS con las variantes `dark:`/`light:`, no con estado de React (así el HTML prerenderizado vale
+  para ambos temas). Usar siempre los tokens semánticos de Tailwind, nunca colores literales:
   `bg-bg`, `bg-surface`, `bg-surface-2`, `border-border`, `text-fg`, `text-fg-muted`, `text-accent`,
   `bg-accent text-accent-fg`, `text-secondary`.
 - **Paleta oscura:** bg `#0A0B0F`, surface `#13151B`, fg `#ECEAE4`, muted `#8C919B`, accent lima `#C8F542`,
@@ -103,7 +105,8 @@ scroll); el resto es sobrio y disciplinado.
 
 - Escena 3D (`components/three/`): `HeroGraph` pinta siempre el SVG (`Scene3DFallback`) y, si procede, carga
   `Scene3D` con `React.lazy` + `Suspense` cuando la página ha cargado (`useIdle`) **y** el usuario interactúa
-  (`useFirstInteraction`): la escena es interactiva y hasta entonces el SVG es equivalente. El fundido SVG → 3D
+  (`useFirstInteraction(can3D)`, sin el evento `scroll`: la restauración de scroll o un ancla no cuentan): la
+  escena es interactiva y hasta entonces el SVG es equivalente. El fundido SVG → 3D
   empieza tras el primer fotograma renderizado (`onFirstFrame`), nunca en `onCreated`.
 - 3D solo si (`useCan3D`): viewport ≥ 1024px, puntero fino (ratón), sin `prefers-reduced-motion`, con WebGL
   y dispositivo no modesto (`hardwareConcurrency`/`deviceMemory` > 4). En móvil no se descarga three.js.
@@ -113,10 +116,11 @@ scroll); el resto es sobrio y disciplinado.
 - El aviso "THREE.Clock has been deprecated" en consola viene de React Three Fiber, no del proyecto.
 - Motion: `<LazyMotion features={…} strict>` + `<MotionConfig reducedMotion="user">` en `App.tsx`. Usar
   siempre componentes `m.*` (no `motion.*`, que fallaría por `strict`); las features (`domAnimation`) se cargan
-  en diferido desde `lib/motionFeatures.ts`. Sin animaciones de layout (`layoutId`) salvo que se cambie a
-  `domMax`.
+  en diferido desde `lib/motionFeatures.ts`, así que **nada imprescindible puede depender de ellas** (podrían
+  no haber llegado): el menú móvil y el botón de tema animan con CSS. Hoy Motion solo mueve `PipelineRail`.
 - **Prerender + hidratación:** el HTML se genera en español en el build. `main.tsx` hidrata dentro de
-  `startTransition` (troceada) si el idioma es `es`; si no, renderiza desde cero y retira `lang-pending`.
+  `startTransition` (troceada) si el idioma es `es`; si no, renderiza desde cero y retira `lang-pending`
+  (el script inline lo retira igualmente a los 4 s por si el JS falla).
   Cada sección bajo el hero va en su propio `<Suspense>` para hidratar por partes.
   Cualquier valor que dependa del navegador (tema, matchMedia, localStorage…) debe usar
   `useSyncExternalStore` con `getServerSnapshot` o leerse en un efecto: si no, hay error de hidratación.

@@ -21,8 +21,9 @@ for (const marker of [HEAD_MARKER, ROOT_MARKER]) {
 
 const appHtml = await render();
 const html = template
-  .replace(HEAD_MARKER, head())
-  .replace(ROOT_MARKER, `<div id="root">${appHtml}</div>`);
+  .replace(HEAD_MARKER, () => head())
+  // Funciones de reemplazo: un '$' en el contenido no se interpreta como patrón de replace().
+  .replace(ROOT_MARKER, () => `<div id="root">${appHtml}</div>`);
 
 await writeFile(INDEX, html);
 await writeFile(resolve('dist/robots.txt'), robots());

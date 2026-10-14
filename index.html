@@ -41,7 +41,13 @@
           }
         }
         root.lang = lang;
-        if (lang !== 'es') root.classList.add('lang-pending');
+        if (lang !== 'es') {
+          root.classList.add('lang-pending');
+          // Si el JS no llega a pintar el otro idioma (error, bloqueo…), se muestra el español.
+          setTimeout(function () {
+            root.classList.remove('lang-pending');
+          }, 4000);
+        }
       })();
     </script>
   </head>

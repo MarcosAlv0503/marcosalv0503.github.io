@@ -1,13 +1,10 @@
-import type { CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 import HeroGraph from '@/components/three/HeroGraph';
 import { ButtonLink } from '@/components/ui/Button';
 import DownloadCvButton from '@/components/ui/DownloadCvButton';
 import { MapPinIcon } from '@/components/ui/icons';
 import { profile } from '@/data/profile';
-
-/** Retardo de cada paso de la entrada (animaciones CSS `animate-hero-*`). */
-const delay = (s: number) => ({ '--delay': `${s}s` }) as CSSProperties;
+import { heroDelay as delay } from '@/lib/heroDelay';
 
 // Único momento orquestado de la web: el nombre sube línea a línea y el resto aparece detrás.
 // Es CSS puro para que se vea igual en el HTML prerenderizado, antes de que cargue React.
