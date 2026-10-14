@@ -126,7 +126,8 @@ scroll); el resto es sobrio y disciplinado.
   `useSyncExternalStore` con `getServerSnapshot` o leerse en un efecto: si no, hay error de hidratación.
 - **No usar `content-visibility: auto`** en las secciones: recorta los nodos del rail (contención de pintado)
   y descuadra la navegación por anclas.
-- Medido en local (Lighthouse 13, Fase 5): móvil 95–96 / 100 / 100 / 100, escritorio 100 / 100 / 100 / 100.
+- Lighthouse 13 sobre la web publicada (Fase 6, 2026-10-14): móvil 95–98 / 100 / 100 / 100, escritorio
+  100 / 100 / 100 / 100 (rendimiento / accesibilidad / buenas prácticas / SEO).
   Las mediciones locales tienen mucho ruido según la carga del equipo: comparar siempre A/B y varias veces.
 - Objetivo Lighthouse ≥ 90 en las cuatro categorías.
 - HTML semántico, skip link, foco visible, navegación por teclado, modales con focus trap + Esc,
