@@ -1,5 +1,6 @@
 import { lazy, Suspense, useState } from 'react';
 import { useCan3D } from '@/hooks/useCan3D';
+import { useFirstInteraction } from '@/hooks/useFirstInteraction';
 import { useIdle } from '@/hooks/useIdle';
 import Scene3DFallback from './Scene3DFallback';
 
@@ -7,13 +8,15 @@ const Scene3D = lazy(() => import('./Scene3D'));
 
 /**
  * Grafo del hero. Siempre pinta el SVG (ligero, sin JS extra); si el dispositivo lo permite,
- * carga la escena 3D cuando el navegador está libre y hace un fundido entre ambos.
+ * carga la escena 3D cuando la página ha cargado y el usuario interactúa (la escena es interactiva:
+ * hasta entonces el SVG es equivalente) y hace un fundido entre ambos.
  */
 export default function HeroGraph() {
   const can3D = useCan3D();
   const idle = useIdle();
+  const interacted = useFirstInteraction();
   const [ready, setReady] = useState(false);
-  const show3D = can3D && idle;
+  const show3D = can3D && idle && interacted;
 
   return (
     <div className="relative aspect-square w-full">

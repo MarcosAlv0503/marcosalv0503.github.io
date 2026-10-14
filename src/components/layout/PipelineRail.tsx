@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring } from 'motion/react';
+import { m, useScroll, useSpring } from 'motion/react';
 import type { RefObject } from 'react';
 
 type PipelineRailProps = { target: RefObject<HTMLElement | null> };
@@ -14,7 +14,7 @@ export default function PipelineRail({ target }: PipelineRailProps) {
   return (
     <div aria-hidden="true" className="absolute inset-y-0 left-12 hidden w-px lg:block">
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-border to-border" />
-      <motion.div
+      <m.div
         className="absolute inset-y-0 -left-[0.5px] w-[2px] origin-top bg-accent"
         style={{ scaleY: progress }}
       />

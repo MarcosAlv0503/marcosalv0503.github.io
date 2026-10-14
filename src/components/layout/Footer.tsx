@@ -6,7 +6,8 @@ export default function Footer() {
   return (
     <footer className="border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-8 text-sm text-fg-muted sm:px-8">
-        <p>{t('footer.rights', { year: new Date().getFullYear() })}</p>
+        {/* El año del HTML prerenderizado puede quedar desfasado hasta el siguiente build. */}
+        <p suppressHydrationWarning>{t('footer.rights', { year: new Date().getFullYear() })}</p>
         <a
           href="#top"
           className="inline-flex min-h-11 items-center gap-2 transition-colors hover:text-fg"

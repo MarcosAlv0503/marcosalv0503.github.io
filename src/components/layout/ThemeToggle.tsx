@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, m } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { MoonIcon, SunIcon } from '@/components/ui/icons';
 import { useTheme } from '@/hooks/useTheme';
@@ -18,7 +18,7 @@ export default function ThemeToggle() {
       className="inline-flex size-9 items-center justify-center overflow-hidden rounded-full text-fg-muted transition-colors hover:bg-surface hover:text-fg"
     >
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span
+        <m.span
           key={theme}
           initial={{ rotate: -90, opacity: 0 }}
           animate={{ rotate: 0, opacity: 1 }}
@@ -26,7 +26,7 @@ export default function ThemeToggle() {
           transition={{ duration: 0.2 }}
         >
           <Icon className="size-[18px]" />
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </button>
   );

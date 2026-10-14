@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -19,7 +19,6 @@
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.1",
     "i18next": "^26.4.2",
-    "i18next-browser-languagedetector": "^8.2.1",
     "motion": "^14.1.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

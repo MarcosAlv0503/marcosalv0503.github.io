@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "Marcos Álvarez · Full-Stack & AI Agent Developer",
-    "description": "Portfolio of Marcos Álvarez, Full-Stack and AI agent developer."
+    "description": "Portfolio of Marcos Álvarez, Full-Stack and AI agent developer.",
+    "ogImageAlt": "Marcos Álvarez's card, Full-Stack & AI Agent Developer"
   },
   "skipLink": "Skip to content",
   "nav": {
@@ -118,5 +119,6 @@
     "label": "Language",
     "es": "Español",
     "en": "English"
-  }
+  },
+  "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 }

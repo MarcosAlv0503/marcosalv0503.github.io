@@ -12,8 +12,8 @@ type TimelineItemProps = { start: IsoDate; end: IsoDate | null; children: ReactN
  * El nodo se enciende cuando la entrada cruza la línea de lectura.
  */
 export default function TimelineItem({ start, end, children }: TimelineItemProps) {
-  const { t, i18n } = useTranslation();
-  const locale = i18n.resolvedLanguage ?? 'es';
+  const { t } = useTranslation();
+  const months = t('months', { returnObjects: true });
   const ref = useRef<HTMLLIElement>(null);
   const active = usePassed(ref);
 
@@ -29,9 +29,9 @@ export default function TimelineItem({ start, end, children }: TimelineItemProps
         }`}
       />
       <p className="mb-2 font-mono text-sm whitespace-nowrap text-fg-muted sm:mb-0 sm:pt-0.5">
-        <time dateTime={start}>{formatDate(start, locale)}</time>
+        <time dateTime={start}>{formatDate(start, months)}</time>
         {' – '}
-        {end ? <time dateTime={end}>{formatDate(end, locale)}</time> : t('experience.present')}
+        {end ? <time dateTime={end}>{formatDate(end, months)}</time> : t('experience.present')}
       </p>
       <div>{children}</div>
     </li>
